@@ -161,28 +161,27 @@ class AdamW(torch.optim.Optimizer):
             param.addcdiv_(exp_avg, denom, value=-step_size * (math.sqrt(bias_correction2)))
 
 
-class ConsinSchedule():
-    def __init__(self,it, max_learning_rate, min_learning_rate, warmup_iters, cosine_cycle_iters):
+class CosineSchedule():
+    def __init__(self, max_learning_rate, min_learning_rate, warmup_iters, cosine_cycle_iters):
 
-        self.it = it
         self.max_lr = max_learning_rate
         self.min_lr = min_learning_rate
         self.warmup_iters = warmup_iters
         self.cosine_cycle_iters = cosine_cycle_iters
     
-    def __call__(self):
-        # self.it = it
-        if self.it < self.warmup_iters:
-            return self.max_lr * (self.it / self. warmup_iters)
-        elif self.it >= self.warmup_iters and self.it <= self.cosine_cycle_iters:
-            v = math.cos((self.it - self.warmup_iters)/(self.cosine_cycle_iters- self.warmup_iters) * math.pi)
+    def __call__(self, it):
+        
+        if it < self.warmup_iters:
+            return self.max_lr * (it / self.warmup_iters)
+        elif it >= self.warmup_iters and it <= self.cosine_cycle_iters:
+            v = math.cos((it - self.warmup_iters)/(self.cosine_cycle_iters- self.warmup_iters) * math.pi)
             return self.min_lr + 0.5 * (1 + v) * (self.max_lr - self.min_lr)
         else:
             return self.min_lr
     
-    def get_lr(self):
-        return self()
-        
+    def get_lr(self, it):
+        return self(it)
+
 
 
 # # 使用示例

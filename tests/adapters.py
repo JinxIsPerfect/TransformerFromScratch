@@ -554,9 +554,9 @@ def run_get_lr_cosine_schedule(
     Returns:
         Learning rate at the given iteration under the specified schedule.
     """
-    from transformer.optimizer import ConsinSchedule
-    schedule = ConsinSchedule(it, max_learning_rate, min_learning_rate, warmup_iters, cosine_cycle_iters)
-    return schedule.get_lr()
+    from transformer.optimizer import CosineSchedule
+    schedule = CosineSchedule(max_learning_rate, min_learning_rate, warmup_iters, cosine_cycle_iters)
+    return schedule.get_lr(it)
 
 
 def run_save_checkpoint(
