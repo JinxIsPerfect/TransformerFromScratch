@@ -19,6 +19,8 @@ dependencies = [
     "tqdm>=4.67.1",
     "wandb>=0.24.0",
     "ty>=0.0.1a16",
+    "matplotlib"
+    "transformers"
 ]
 
 [build-system]
