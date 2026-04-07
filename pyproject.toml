@@ -11,7 +11,7 @@ dependencies = [
     "numpy",
     "psutil>=6.1.1",
     "pytest>=8.3.4",
-    "regex>=2024.11.6", # more powerful regex than the builtin `re` module
+    "regex>=2025.10.22", # more powerful regex than the builtin `re` module
     "submitit>=1.5.2", # job submission for SLURM
     "tiktoken>=0.9.0",
     "torch~=2.6.0; sys_platform != 'darwin' or platform_machine != 'x86_64'",
